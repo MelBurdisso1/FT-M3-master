@@ -12,18 +12,18 @@ function $Promise(executor) {
   executor(this._internalResolve.bind(this), this._internalReject.bind(this));
 }
 
-$Promise.prototype._internalResolve = function (data) {
+$Promise.prototype._internalResolve = function (value) {
   if (this._state === "pending") {
     this._state = "fulfilled";
-    this._value = data;
+    this._value = value;
     this._callHandlers();
   }
 };
 
-$Promise.prototype._internalReject = function (reason) {
+$Promise.prototype._internalReject = function (value) {
   if (this._state === "pending") {
     this._state = "rejected";
-    this._value = reason;
+    this._value = value;
     this._callHandlers();
   }
 };
